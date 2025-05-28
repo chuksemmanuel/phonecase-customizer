@@ -1,5 +1,6 @@
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import { Check } from 'lucide-react';
+import PhoneCase from '@/components/Phone';
+import { Check, Star } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Home() {
@@ -29,9 +30,66 @@ export default function Home() {
 											<Check className='size-5 shrink-0 text-green-600' />
 											High-quality, durable material
 										</li>
+										<li className='flex gap-1.5 items-center text-left'>
+											<Check className='size-5 shrink-0 text-green-600' />5 year print gaurantee
+										</li>
+										<li className='flex gap-1.5 items-center text-left'>
+											<Check className='size-5 shrink-0 text-green-600' />
+											Modern Iphone models supported
+										</li>
 									</div>
 								</ul>
+
+								<div className='mt-12 flex-col  sm:flex-row items-center sm:items-start gap-5'>
+									<div className='flex justify-center lg:justify-start  mb-4 -space-x-4'>
+										{Array.from({ length: 5 }).map((_, i) => (
+											<Image
+												className='inline-block size-10 rounded-full ring-2 ring-slate-100'
+												height={40}
+												width={40}
+												src={`/users/user-${i + 1}.${i > 2 ? 'jpg' : 'png'}`}
+												alt='user image'
+												key={i}
+											/>
+										))}
+									</div>
+
+									<div className='flex flex-col justify-between items-center sm:items-start'>
+										<div className='flex justify-center  gap-0.5'>
+											{Array.from({ length: 5 }).map((_, i) => (
+												<Star className='size-4 text-green-600 fill-green-600' key={i} />
+											))}
+										</div>
+										<p>
+											<span className='font-semibold'>1.250 </span>happy customers
+										</p>
+									</div>
+								</div>
 							</div>
+						</div>
+					</div>
+
+					<div className='col-span-full lg:col-span-1 w-full flex justify-center px-8 sm:px-16 md:px-0 mt-32 lg:mx-0 lg:mt-20 h-fit'>
+						<div className='relative md:max-w-xl'>
+							<Image
+								src='/your-image.png'
+								alt='your image'
+								width={500}
+								height={500}
+								sizes='100vw'
+								className='absolute w-40 lg:w-52 left-56 -top-20 select-none hidden sm:block lg:hidden xl:block'
+							/>
+
+							<Image
+								src='/line.png'
+								alt='absolute w-20 -left-6 -bottom-6 select-none'
+								width={500}
+								height={500}
+								sizes='100vw'
+								className='absolute w-40 lg:w-52 left-56 -top-20 select-none hidden sm:block lg:hidden xl:block'
+							/>
+
+							<PhoneCase imgSrc='/testimonials/3.jpg' className='w-64' />
 						</div>
 					</div>
 				</MaxWidthWrapper>
