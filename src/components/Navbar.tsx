@@ -11,7 +11,7 @@ const Navbar = async () => {
 	const isAdmin = user?.email === process.env.ADMIN_EMAIL;
 
 	return (
-		<nav className='sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/75 background-blur-lg transition-all'>
+		<nav className='sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/75 background-blur-lg transition-all max-w-full overflow-hidden'>
 			<MaxWidthWrapper>
 				<div className='flex h-14 items-center justify-between border-b border-zinc-200'>
 					<Link href='/' className='flex z-40 font-semibold '>
@@ -45,7 +45,7 @@ const Navbar = async () => {
 									Login
 								</Link>{' '}
 								<div className='h-8 w-px bg-zinc-200 hidden sm:block'></div>
-								<Link href='/api/configure/upload' className={buttonVariants({ size: 'sm' })}>
+								<Link href='/api/configure/upload' className={buttonVariants({ size: 'sm', className: 'hidden!' })}>
 									Create case
 									<ArrowRight className='ml-1.5 size-5' />
 								</Link>{' '}

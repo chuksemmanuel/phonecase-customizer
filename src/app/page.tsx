@@ -1,7 +1,9 @@
+import Image from 'next/image';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import PhoneCase from '@/components/Phone';
 import { Check, Star } from 'lucide-react';
-import Image from 'next/image';
+import { Icons } from '@/components/icons';
+import Reviews from '@/components/Reviews';
 
 export default function Home() {
 	return (
@@ -93,6 +95,83 @@ export default function Home() {
 						</div>
 					</div>
 				</MaxWidthWrapper>
+			</section>
+
+			{/* Value position section */}
+
+			<section className='bg-slate-100 py-24'>
+				<MaxWidthWrapper classNames='flex flex-col items-center gap-16 sm:gap-32'>
+					<div className='flex flex-col lg:flex-row items-center gap-4 sm:gap-6'>
+						<h2 className='order-1 mt-2 tracking-tight text-center !leading-tight font-bold text-5xl md:text-6xl text-gray-900'>
+							What our{' '}
+							<span className='relative px-2'>
+								customers <Icons.underline className='hidden sm:block pointer-events-none absolute inset-x-0 -bottom-6 text-green-500' />
+							</span>{' '}
+							say
+						</h2>
+						<Image src='/snake-2.png' alt='' className='w-24 order-0 lg:order-2' width={96} height={0} />
+					</div>
+
+					<div className='mx-auto grid max-w-2xl grid-cols-1 px-4 lg:mx-0 lg-max-w-none lg:grid-cols-2 gap-y-16'>
+						{/* first user review */}
+						<div className='flex flex-auto flex-col gap-4'>
+							<div className='flex gap-0.5 mb-2'>
+								{Array.from({ length: 5 }).map((_, i) => (
+									<Star key={i} className='h-5 w-5 text-green-600 fill-green-600' />
+								))}
+							</div>
+							<div className='text-lg leading-8'>
+								<p>
+									{' '}
+									&ldquo; The case feels durable and I even got a compliment on the design. Had the case for two days and half months now and{' '}
+									<span className='p-0.5 bg-slate-800 text-white'>the image is super clear</span>, on the case I had before, the image started fading
+									into yellow-ish color after a couple weeks. Love it &ldquo;
+								</p>
+							</div>
+							<div className='flex gap-4 mt-2'>
+								<Image src='/users/user-1.png' alt='user image' width={48} height={48} className='rounded-full size-12 object-cover' />
+								<div className='flex flex-col'>
+									<p className='font-semibold'>Jonathan</p>
+									<div className='flex gap-1.5 items-center text-zinc-600'>
+										<Check className='size-4 stroke-[-3px] text-green-600' />
+										<p className='text-sm'>Verified Purchase</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						{/* second user review */}
+						<div className='flex flex-auto flex-col gap-4'>
+							<div className='flex gap-0.5 mb-2'>
+								{Array.from({ length: 5 }).map((_, i) => (
+									<Star key={i} className='h-5 w-5 text-green-600 fill-green-600' />
+								))}
+							</div>
+							<div className='text-lg leading-8'>
+								<p>
+									{' '}
+									&ldquo; I usually keep my phone together with my keys in my pocket and that led to some pretty heavy scratchmarks on all my last
+									phone cases. This one, besides a barely noticeable scrath on the corner,{' '}
+									<span className='p-0.5 bg-slate-800 text-white'>loks brand new after about half a year</span>, I dig it. &ldquo;
+								</p>
+							</div>
+							<div className='flex gap-4 mt-2'>
+								<Image src='/users/user-4.jpg' alt='user image' width={48} height={48} className='rounded-full size-12 object-cover' />
+								<div className='flex flex-col'>
+									<p className='font-semibold'>Matt</p>
+									<div className='flex gap-1.5 items-center text-zinc-600'>
+										<Check className='size-4 stroke-[-3px] text-green-600' />
+										<p className='text-sm'>Verified Purchase</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</MaxWidthWrapper>
+
+				<div className='pt-16'>
+					<Reviews />
+				</div>
 			</section>
 		</div>
 	);
