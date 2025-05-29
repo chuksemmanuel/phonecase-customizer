@@ -41,6 +41,25 @@
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
+
+	/* Custom theme styles */
+	--animate-marquee: 'marquee var(--marquee-duration) linear infinite';
+	--animate-fade-in: 'fade-in 0.5s linear ease-out';
+
+	@keyframes marquee {
+		100% {
+			transform: 'translateY(-50%)';
+		}
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
 }
 
 /* @media (prefers-color-scheme: dark) {
