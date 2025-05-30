@@ -206,7 +206,7 @@ export default function Home() {
 								/>
 							</div>
 
-							<PhoneCase className='w-60' imgSrc='/horse.jpg' />
+							<PhoneCase className='w-60 ' imgSrc='/horse.jpg' />
 						</div>
 					</div>
 

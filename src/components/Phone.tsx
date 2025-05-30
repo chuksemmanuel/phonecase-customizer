@@ -19,7 +19,7 @@ const PhoneCase = ({ className, imgSrc, dark = false, ...props }: PhoneCaseProps
 			/>
 
 			<div className='absolute -z-10 inset-0'>
-				<Image src={imgSrc} alt='overlay phone image' width={500} height={500} className='object-cover' />
+				<Image src={imgSrc} alt='overlay phone image' width={500} height={500} className='object-cover aspect-[896/1831]' />
 			</div>
 		</div>
 	);
