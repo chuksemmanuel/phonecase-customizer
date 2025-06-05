@@ -1,7 +1,7 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 import { z } from 'zod';
 const f = createUploadthing();
-import sharp from 'sharp';
+import { Jimp } from 'jimp';
 import { db } from '@/db';
 
 // FileRouter for your app, can contain multiple FileRoutes
@@ -28,8 +28,8 @@ export const ourFileRouter = {
 			const res = await fetch(file.ufsUrl);
 			const buffer = await res.arrayBuffer();
 
-			const imgMetadata = await sharp(buffer).metadata();
-			const { width, height } = imgMetadata;
+			const imgMetadata = await Jimp.read(buffer);
+			const { width, height } = imgMetadata.bitmap;
 
 			if (!configId) {
 				const configuration = await db.configuration.create({

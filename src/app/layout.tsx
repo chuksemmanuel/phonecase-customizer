@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Toaster } from 'sonner';
+import Providers from '@/components/Providers';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -26,11 +27,13 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang='en'>
+		<html lang='en' suppressHydrationWarning>
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 				<Navbar />
 				<main className='flex flex-col min-h-[calc(100vh-3.5rem-1px)]'>
-					<div className='flex flex-1 flex-col h-full'>{children}</div>
+					<div className='flex flex-1 flex-col h-full'>
+						<Providers>{children}</Providers>
+					</div>
 					<Footer />
 				</main>
 				<Toaster richColors position='bottom-center' />
