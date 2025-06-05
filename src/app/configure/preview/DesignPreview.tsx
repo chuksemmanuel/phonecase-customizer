@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Check } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Confetti from 'react-dom-confetti';
+import { useMutation } from '@tanstack/react-query';
 
 const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
 	const [showConfetti, setShowConfetti] = useState(false);
@@ -21,6 +22,11 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
 	const { label: modelLabel } = MODELS.find(({ value }) => value === model)!;
 
 	const totalPrice = BASE_PRICE + PRODUCT_PRICES.material[material!] + PRODUCT_PRICES.finish[finish!];
+
+	const {} = useMutation({
+		mutationKey: ['get-checkout-session'],
+		mutationFn: async () => {},
+	});
 
 	return (
 		<>
@@ -90,7 +96,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
 						</div>
 
 						<div className='mt-8 flex justify-end pb-12'>
-							<Button className='px-4 sm:px-6 lg:px-8 cursor-pointer'>
+							<Button className='px-4 sm:px-6 lg:px-8 cursor-pointer' isLoading loadingText='Processing order'>
 								Check out <ArrowRight className='size-4 inline' />
 							</Button>
 						</div>

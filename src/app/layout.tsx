@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist_Mono, Recursive } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Toaster } from 'sonner';
 import Providers from '@/components/Providers';
 
-const geistSans = Geist({
-	variable: '--font-geist-sans',
+const recursive = Recursive({
+	variable: '--font-recursive-sans',
 	subsets: ['latin'],
 });
 
@@ -28,9 +28,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en' suppressHydrationWarning>
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+			<body className={`${recursive.variable} ${geistMono.variable} antialiased`}>
 				<Navbar />
-				<main className='flex flex-col min-h-[calc(100vh-3.5rem-1px)]'>
+				<main className='flex flex-col min-h-[calc(100vh-3.5rem-1px)] grainy-light'>
 					<div className='flex flex-1 flex-col h-full'>
 						<Providers>{children}</Providers>
 					</div>
