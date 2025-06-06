@@ -30,7 +30,7 @@ const Navbar = async () => {
 										Dashboard ✨
 									</Link>
 								)}
-								<Link href='/api/configure/upload' className={buttonVariants({ size: 'sm' })}>
+								<Link href='configure/upload' className={buttonVariants({ size: 'sm' })}>
 									Create case
 									<ArrowRight className='ml-1.5 size-5' />
 								</Link>{' '}
@@ -45,7 +45,7 @@ const Navbar = async () => {
 									Login
 								</Link>{' '}
 								<div className='h-8 w-px bg-zinc-200 hidden sm:block'></div>
-								<Link href='/api/configure/upload' className={buttonVariants({ size: 'sm', className: 'hidden!' })}>
+								<Link href='/configure/upload' className={buttonVariants({ size: 'sm', className: 'hidden!' })}>
 									Create case
 									<ArrowRight className='ml-1.5 size-5' />
 								</Link>{' '}

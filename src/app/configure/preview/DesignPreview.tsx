@@ -9,9 +9,19 @@ import { ArrowRight, Check } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Confetti from 'react-dom-confetti';
 import { useMutation } from '@tanstack/react-query';
+import { createCheckoutSession } from './actions';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
+import LoginModal from '@/components/LoginModal';
 
 const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
 	const [showConfetti, setShowConfetti] = useState(false);
+	const router = useRouter();
+	const { user } = useKindeBrowserClient();
+	const { id } = configuration;
+	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
 	useEffect(() => {
 		setShowConfetti(true);
 	}, []);
@@ -23,13 +33,36 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
 
 	const totalPrice = BASE_PRICE + PRODUCT_PRICES.material[material!] + PRODUCT_PRICES.finish[finish!];
 
-	const {} = useMutation({
+	const { mutate: createPaymentSession, isPending } = useMutation({
 		mutationKey: ['get-checkout-session'],
-		mutationFn: async () => {},
+		mutationFn: createCheckoutSession,
+		onSuccess: ({ url }) => {
+			if (url) {
+				router.push(url);
+			} else {
+				throw new Error('Unable to retrive payment URL.');
+			}
+		},
+		onError: () => {
+			toast.error('Something went wrong', { description: 'There was an error on our end. Please try again' });
+		},
 	});
+
+	const handleCheckout = () => {
+		if (user) {
+			// Create payment session
+			createPaymentSession({ configId: id });
+		} else {
+			// need to log in
+			console.log(id);
+			localStorage.setItem('configurationId', id);
+			setIsLoginModalOpen(true);
+		}
+	};
 
 	return (
 		<>
+			<LoginModal isOpen={isLoginModalOpen} setIsOpen={setIsLoginModalOpen} />
 			<div className='pointer-events-none select-none absolute  inset-0 overflow-hidden flex justify-center' aria-hidden='true'>
 				<Confetti active={showConfetti} config={{ elementCount: 500, spread: 200 }} />
 			</div>
@@ -96,7 +129,11 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
 						</div>
 
 						<div className='mt-8 flex justify-end pb-12'>
-							<Button className='px-4 sm:px-6 lg:px-8 cursor-pointer' isLoading loadingText='Processing order'>
+							<Button
+								className='px-4 sm:px-6 lg:px-8 cursor-pointer'
+								onClick={handleCheckout}
+								isLoading={isPending}
+								loadingText={isPending ? 'Processing order' : null}>
 								Check out <ArrowRight className='size-4 inline' />
 							</Button>
 						</div>

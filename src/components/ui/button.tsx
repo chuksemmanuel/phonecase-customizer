@@ -43,7 +43,7 @@ function Button({
 }: React.ComponentProps<'button'> &
 	VariantProps<typeof buttonVariants> & {
 		asChild?: boolean;
-	} & { isLoading?: boolean; loadingText?: string }) {
+	} & { isLoading?: boolean; loadingText?: string | null }) {
 	const Comp = asChild ? Slot : 'button';
 
 	return (
