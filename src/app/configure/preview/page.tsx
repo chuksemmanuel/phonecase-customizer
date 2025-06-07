@@ -5,13 +5,11 @@ import { db } from '@/db';
 import { notFound } from 'next/navigation';
 
 interface PreviewPageProps {
-	searchParams: {
-		[key: string]: string | string[] | undefined;
-	};
+	searchParams: Promise<{ [key: string]: string }>;
 }
 
 const PreviewPage = async ({ searchParams }: PreviewPageProps) => {
-	const { id } = searchParams;
+	const { id } = await searchParams;
 
 	if (!id || typeof id !== 'string') {
 		return notFound();

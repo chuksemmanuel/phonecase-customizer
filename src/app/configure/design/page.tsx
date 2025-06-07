@@ -3,9 +3,7 @@ import { notFound } from 'next/navigation';
 import DesignConfigurator from './DesignConfigurator';
 
 interface DesignPageProps {
-	searchParams: {
-		[key: string]: string | string[] | undefined;
-	};
+	searchParams: Promise<{ [key: string]: string }>;
 }
 
 const DesignPage = async ({ searchParams }: DesignPageProps) => {
